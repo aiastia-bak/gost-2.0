@@ -58,6 +58,8 @@ go build
 
 ```bash
 docker pull ginuerzh/gost
+docker run --net=host ginuerzh/gost -L=wss://:12033/0.0.0.0:12021
+
 ```
 
 #### Homebrew
