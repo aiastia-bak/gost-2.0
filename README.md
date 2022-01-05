@@ -59,7 +59,7 @@ go build
 ```bash
 docker pull ginuerzh/gost
 docker run --net=host ginuerzh/gost -L=wss://:12033/0.0.0.0:12021
-
+docker run -d -v /home/aiastia/gost/:/1/ --net=host ginuerzh/gost -L='relay+wss://:12033/:12021?cert=/1/1.crt&key=/1/1.key'
 ```
 
 #### Homebrew
