@@ -58,7 +58,8 @@ go build
 
 ```bash
 docker pull ginuerzh/gost
-docker run -d --net=host --restart=always ginuerzh/gost -L=wss://:12033/0.0.0.0:12021
+docker run -d --net=host --restart=always ginuerzh/gost -L="relay+wss://:12033/0.0.0.0:12021"
+docker run -d --net=host ginuerzh/gost -L="relay+ws://:2089/0.0.0.0:2086"
 docker run -d -v /home/aiastia/gost/:/1/ --net=host --restart=always ginuerzh/gost -L='relay+wss://:12033/:12021?cert=/1/1.crt&key=/1/1.key'
 docker run -d --net=host --restart=always ginuerzh/gost -L=kooh:kaib@:12026
 docker run -d -p 12027:12027 --restart=always ginuerzh/gost -L=kooh:kaib@:12027
