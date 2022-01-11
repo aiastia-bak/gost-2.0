@@ -69,7 +69,7 @@ docker run -d --net=host --name 2089 ginuerzh/gost -L="relay+ws://:2089/0.0.0.0:
 ````
 wss 自定义证书
 ````
-docker run -d -v /home/aiastia/gost/:/1/ --net=host --restart=always --name 2089 ginuerzh/gost -L='relay+wss://:12033/:12021?cert=/1/1.crt&key=/1/1.key'
+docker run -d -v /home/aiastia/gost/:/1/ --net=host --restart=always --name 12033 ginuerzh/gost -L='relay+wss://:12033/:12020?cert=/1/1.crt&key=/1/1.key'
 ````
 sockes5 host
 ````
