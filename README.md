@@ -58,15 +58,27 @@ go build
 
 ```bash
 docker pull ginuerzh/gost
-docker run -d --net=host --restart=always ginuerzh/gost -L="relay+wss://:12033/0.0.0.0:12021"
-docker run -d --net=host ginuerzh/gost -L="relay+ws://:2089/0.0.0.0:2086"
-docker run -d -v /home/aiastia/gost/:/1/ --net=host --restart=always ginuerzh/gost -L='relay+wss://:12033/:12021?cert=/1/1.crt&key=/1/1.key'
-docker run -d --net=host --restart=always ginuerzh/gost -L=kooh:kaib@:12026
-docker run -d -p 12027:12027 --restart=always ginuerzh/gost -L=kooh:kaib@:12027
-
 ```
-
-
+wss
+````
+docker run -d --net=host --restart=always --name 12033 ginuerzh/gost -L="relay+wss://:12033/0.0.0.0:12021"
+````
+ws
+````
+docker run -d --net=host --name 2089 ginuerzh/gost -L="relay+ws://:2089/0.0.0.0:2086"
+````
+wss 自定义证书
+````
+docker run -d -v /home/aiastia/gost/:/1/ --net=host --restart=always --name 2089 ginuerzh/gost -L='relay+wss://:12033/:12021?cert=/1/1.crt&key=/1/1.key'
+````
+sockes5 host
+````
+docker run -d --net=host --restart=always --name 12026 ginuerzh/gost -L=kooh:kaib@:12026
+````
+sockes5 端口映射
+````
+docker run -d -p 12027:12027 --restart=always --name 12027 ginuerzh/gost -L=kooh:kaib@:12027
+````
 #### Homebrew
 
 ```bash
