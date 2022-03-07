@@ -59,6 +59,10 @@ go build
 ```bash
 docker pull ginuerzh/gost
 ```
+转发
+````
+docker run -d --net=host --restart=always --name 1 ginuerzh/gost -L="tcp://:2053/0.0.0.0:443"
+````
 wss
 ````
 docker run -d --net=host --restart=always --name 12033 ginuerzh/gost -L="relay+wss://:12033/0.0.0.0:12021"
