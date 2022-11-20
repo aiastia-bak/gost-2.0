@@ -212,6 +212,12 @@ func parseChainNode(ns string) (nodes []gost.Node, err error) {
 			Timeout:     timeout,
 			IdleTimeout: node.GetDuration("idle"),
 		}
+		if config.KeepAlive {
+			config.KeepAlivePeriod = node.GetDuration("ttl")
+			if config.KeepAlivePeriod == 0 {
+				config.KeepAlivePeriod = 10 * time.Second
+			}
+		}
 
 		if cipher := node.Get("cipher"); cipher != "" {
 			sum := sha256.Sum256([]byte(cipher))
@@ -458,6 +464,12 @@ func (r *route) GenRouters() ([]router, error) {
 				Timeout:     timeout,
 				IdleTimeout: node.GetDuration("idle"),
 			}
+			if config.KeepAlive {
+				config.KeepAlivePeriod = node.GetDuration("ttl")
+				if config.KeepAlivePeriod == 0 {
+					config.KeepAlivePeriod = 10 * time.Second
+				}
+			}
 			if cipher := node.Get("cipher"); cipher != "" {
 				sum := sha256.Sum256([]byte(cipher))
 				config.Key = sum[:]
@@ -652,6 +664,8 @@ func (r *route) GenRouters() ([]router, error) {
 			gost.IPsHandlerOption(ips),
 			gost.TCPModeHandlerOption(node.GetBool("tcp")),
 			gost.IPRoutesHandlerOption(tunRoutes...),
+			gost.ProxyAgentHandlerOption(node.Get("proxyAgent")),
+			gost.HTTPTunnelHandlerOption(node.GetBool("httpTunnel")),
 		)
 
 		rt := router{
